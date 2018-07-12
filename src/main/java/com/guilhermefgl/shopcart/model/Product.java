@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "product")
 public class Product implements Serializable {
@@ -25,7 +26,7 @@ public class Product implements Serializable {
 	private String name;
 	
 	@Column(nullable = false)
-	@NotBlank(message = "price cannot be empty")
+	@NotNull(message = "price cannot be empty")
 	private Double price;
 
 	public Long getId() {

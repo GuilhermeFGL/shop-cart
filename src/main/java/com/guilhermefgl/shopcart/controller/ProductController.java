@@ -5,7 +5,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,15 +25,15 @@ public class ProductController {
 
 	@GetMapping
 	public ModelAndView list() {
-		ModelAndView mv = new ModelAndView("/products/list");
+		ModelAndView mv = new ModelAndView("/product/list");
 		mv.addObject("products", service.findAll());
 		return mv;
 	}
 
 	@GetMapping("/create")
 	public ModelAndView create(Product produc) {
-		ModelAndView mv = new ModelAndView("/products/create");
-		mv.addObject("products", produc);
+		ModelAndView mv = new ModelAndView("/product/create");
+		mv.addObject("product", produc);
 		return mv;
 	}
 

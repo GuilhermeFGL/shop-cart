@@ -25,13 +25,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="product : product">
-							<td th:text="${product.NAME}"></td>
-							<td th:text="${product.PRICE}"></td>
+						<tr th:each="product : ${products}">
+							<td th:text="${product.name}"></td>
+							<td th:text="${product.price}"></td>
 							<td>
 								<div class="btn-group pull-right">
-									<a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${product.id})}">update</a> 
-									<a class="delete btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${product.id})}">delete</a>
+									<a class="btn btn-sm btn-primary" th:href="@{/product/update/{id}(id=${product.id})}">update</a> 
+									<a class="delete btn btn-sm btn-danger" th:href="@{/product/delete/{id}(id=${product.id})}">delete</a>
 								</div>
 							</td>
 						</tr>
@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<div class="panel-footer">
-			<a class="btn btn-sm btn-success" th:href="@{/add/}">create</a>
+			<a class="btn btn-sm btn-success" th:href="@{/product/create}">create</a>
 		</div>
 	</div>
 </body>
