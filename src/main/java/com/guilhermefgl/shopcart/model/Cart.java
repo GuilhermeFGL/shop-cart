@@ -14,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity(name = "cart")
 public class Cart implements Serializable {
@@ -34,7 +32,6 @@ public class Cart implements Serializable {
 	@Column(nullable = false)
 	private Boolean closed = false;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime dateTime;
 
 	@ManyToMany(fetch = FetchType.LAZY)
