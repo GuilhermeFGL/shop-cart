@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.guilhermefgl.shopcart.model.Product;
+import com.guilhermefgl.shopcart.model.dto.ProductDto;
 import com.guilhermefgl.shopcart.service.dao.ProductDao;
 
 @Controller
@@ -31,7 +32,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/create")
-	public ModelAndView create(Product produc) {
+	public ModelAndView create(ProductDto produc) {
 		ModelAndView mv = new ModelAndView("/product/create");
 		mv.addObject("product", produc);
 		return mv;
@@ -41,9 +42,9 @@ public class ProductController {
 	public ModelAndView update(@PathVariable("id") Long id) {
 		Optional<Product> oProduct = service.findOne(id);
 		if (oProduct.get() != null) {
-			return create(oProduct.get());
+			return create(new ProductDto().createProdutoDTO(oProduct.get()));
 		} 
-		return create(new Product());
+		return create(new ProductDto());
 	}
 
 	@GetMapping("/delete/{id}")
@@ -53,11 +54,11 @@ public class ProductController {
 	}
 
 	@PostMapping("/save")
-	public ModelAndView save(@Valid Product product, BindingResult result) {
+	public ModelAndView save(@Valid ProductDto product, BindingResult result) {
 		if (result.hasErrors()) {
 			return create(product);
 		}
-		service.save(product);
+		service.save(product.toModel(service, result));
 		return list();
 	}
 }

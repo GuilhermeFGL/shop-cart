@@ -22,11 +22,9 @@ public class Product implements Serializable {
 	private Long id;
 	
 	@Column(nullable = false, length = 50)
-	@NotBlank(message = "name cannot be empty")
 	private String name;
 	
 	@Column(nullable = false)
-	@NotNull(message = "price cannot be empty")
 	private Double price;
 
 	public Long getId() {
