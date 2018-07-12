@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.guilhermefgl.shopcart.model.Product;
-import com.guilhermefgl.shopcart.service.ProductService;
+import com.guilhermefgl.shopcart.service.dao.ProductDao;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 
 	@Autowired
-	private ProductService service;
+	private ProductDao service;
 
 	@GetMapping
 	public ModelAndView list() {
