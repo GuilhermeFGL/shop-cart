@@ -47,7 +47,7 @@ public class ProductDto {
 		Product product = new Product();
 
 		if (getId() != null) {
-			Optional<Product> produtoOpt = productService.findOne(getId());
+			Optional<Product> produtoOpt = productService.find(getId());
 			if (produtoOpt.isPresent()) {
 				product = produtoOpt.get();
 			} else {

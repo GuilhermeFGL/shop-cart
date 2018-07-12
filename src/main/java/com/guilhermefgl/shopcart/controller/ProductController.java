@@ -40,7 +40,7 @@ public class ProductController {
 
 	@GetMapping("/update/{id}")
 	public ModelAndView update(@PathVariable("id") Long id) {
-		Optional<Product> oProduct = service.findOne(id);
+		Optional<Product> oProduct = service.find(id);
 		if (oProduct.get() != null) {
 			return create(new ProductDto().createProdutoDTO(oProduct.get()));
 		} 

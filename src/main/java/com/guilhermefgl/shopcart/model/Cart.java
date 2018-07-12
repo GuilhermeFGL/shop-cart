@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity(name = "cart")
 public class Cart implements Serializable {
@@ -27,14 +30,16 @@ public class Cart implements Serializable {
 
 	@Column(nullable = false)
 	String user;
-	
+
 	@Column(nullable = false)
 	private Boolean closed = false;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private LocalDateTime dateTime;
 
-    @ManyToMany
-    @JoinTable(name = "cart_has_product", joinColumns = {@JoinColumn(name="id_cart")}, inverseJoinColumns={@JoinColumn(name="id_product")})
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "cart_has_product", joinColumns = { @JoinColumn(name = "id_cart") }, inverseJoinColumns = {
+			@JoinColumn(name = "id_product") })
 	private List<Product> products;
 
 	public Long getId() {
@@ -67,6 +72,14 @@ public class Cart implements Serializable {
 
 	public void setDate(LocalDateTime date) {
 		this.dateTime = date;
+	}
+
+	public Boolean getClosed() {
+		return closed;
+	}
+
+	public void setClosed(Boolean closed) {
+		this.closed = closed;
 	}
 
 }

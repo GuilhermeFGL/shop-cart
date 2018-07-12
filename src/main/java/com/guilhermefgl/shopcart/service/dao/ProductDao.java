@@ -9,7 +9,7 @@ public interface ProductDao {
 	
 	List<Product> findAll();
 	
-	Optional<Product> findOne(Long id);
+	Optional<Product> find(Long id);
 
 	Product save(Product product);
 

@@ -22,7 +22,7 @@ public class ProductService implements ProductDao {
 	}
 	
 	@Override
-	public Optional<Product> findOne(Long id) {
+	public Optional<Product> find(Long id) {
 		return repository.findById(id);
 	}
 	

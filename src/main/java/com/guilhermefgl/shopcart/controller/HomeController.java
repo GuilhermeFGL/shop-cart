@@ -47,7 +47,7 @@ public class HomeController {
 	
 	@GetMapping("{id}")
 	public ModelAndView show(@PathVariable("id") Long id) {
-		Optional<Product> product = service.findOne(id);
+		Optional<Product> product = service.find(id);
 		
 		if (product.isPresent()) {
 			ModelAndView mv = new ModelAndView("/home/detail");
