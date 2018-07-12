@@ -1,6 +1,5 @@
 package com.guilhermefgl.shopcart.model.dto;
 
-import java.text.ParseException;
 import java.util.Optional;
 
 import javax.validation.constraints.NotEmpty;

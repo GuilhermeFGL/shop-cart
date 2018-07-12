@@ -10,8 +10,8 @@ public interface ProductDao {
 	List<Product> findAll();
 	
 	Optional<Product> findOne(Long id);
-	
+
 	Product save(Product product);
-	
+
 	void delete(Long id);
 }
