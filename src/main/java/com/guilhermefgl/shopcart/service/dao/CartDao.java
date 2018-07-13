@@ -14,7 +14,9 @@ public interface CartDao {
 	List<Cart> findAll(User user);
 	
 	Optional<Cart> find(Long id, User user);
+	
+	Optional<Cart> getOpenCart(String user);
 
-	Cart save(Cart cart, User user);
+	Cart save(Cart cart);
 	
 }

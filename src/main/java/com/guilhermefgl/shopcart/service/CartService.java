@@ -22,7 +22,7 @@ public class CartService implements CartDao {
 		if (user == null) {
 			return null;
 		}
-		
+
 		return repository.findAllByUser(user.getName());
 	}
 
@@ -31,17 +31,17 @@ public class CartService implements CartDao {
 		if (user == null) {
 			return null;
 		}
-		
+
 		return repository.findByIdAndUser(id, user.getName());
 	}
 
 	@Override
-	public Cart save(Cart cart, User user) {
-		if (user == null) {
-			return null;
-		}
-		
-		cart.setUser(user.getName());
+	public Optional<Cart> getOpenCart(String user) {
+		return repository.findByUserAndClosed(user, false);
+	}
+
+	@Override
+	public Cart save(Cart cart) {
 		return repository.save(cart);
 	}
 

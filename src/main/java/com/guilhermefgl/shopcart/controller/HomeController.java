@@ -27,7 +27,7 @@ public class HomeController {
     @Autowired
     private AuthenticationFacade authentication;
     
-	@RequestMapping("logout")
+    @GetMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:login";

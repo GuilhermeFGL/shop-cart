@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/product/**").access("hasRole('" + Role.USER.name() + "')")
+			.antMatchers("/cart/**").access("hasRole('" + Role.USER.name() + "')")
 			.and().formLogin();
 	}
 }
