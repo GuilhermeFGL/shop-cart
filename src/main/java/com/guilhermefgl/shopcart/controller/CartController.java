@@ -48,15 +48,10 @@ public class CartController {
 			return new ModelAndView("redirect:/");
 		}
 		
-		Double total = 0d;
-		for (Product product : oCart.get().getProducts()) {
-			total += product.getPrice();
-		}
-		
 		ModelAndView mv = new ModelAndView("/cart/current");
 		mv.addObject("products", oCart.get().getProducts());
 		mv.addObject("user", auth.getName());
-		mv.addObject("total", total);
+		mv.addObject("total", oCart.get().getTotal());
 		return mv;
 	}
 
@@ -82,6 +77,7 @@ public class CartController {
 			cart.setProducts(new ArrayList<Product>());
 		}
 		cart.getProducts().add(oProduct.get());
+		cart.setTotal(cart.getTotal() + oProduct.get().getPrice());
 		cartService.save(cart);
 		
 		return openCart();
@@ -101,13 +97,6 @@ public class CartController {
 			Cart cart = oCart.get();
 			cart.setClosed(true);
 			cart.setDate(LocalDateTime.now());
-			
-			double total = 0d;
-			for (Product product : cart.getProducts()) {
-				total += product.getPrice();
-			}
-			cart.setTotal(total);
-			
 			cartService.save(cart);
 		}
 		

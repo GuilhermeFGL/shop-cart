@@ -46,7 +46,7 @@
 							<td>
 								<ul>
 									<li th:each="product : ${cart.getProducts()}">
-										<span th:text="${product.getName()}"></span> <span th:text="|($${product.getPrice()})|"></span>
+										<span th:text="${product.getName()}"></span> <span th:text="|($ ${product.getPrice()})|"></span>
 									</li>
 								</ul>
 							</td>
