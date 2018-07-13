@@ -101,6 +101,13 @@ public class CartController {
 			Cart cart = oCart.get();
 			cart.setClosed(true);
 			cart.setDate(LocalDateTime.now());
+			
+			double total = 0d;
+			for (Product product : cart.getProducts()) {
+				total += product.getPrice();
+			}
+			cart.setTotal(total);
+			
 			cartService.save(cart);
 		}
 		

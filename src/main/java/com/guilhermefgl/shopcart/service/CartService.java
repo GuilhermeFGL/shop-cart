@@ -18,12 +18,12 @@ public class CartService implements CartDao {
 	private CartRepository repository;
 
 	@Override
-	public List<Cart> findAll(User user) {
+	public List<Cart> findAll(String user) {
 		if (user == null) {
 			return null;
 		}
 
-		return repository.findAllByUser(user.getName());
+		return repository.findAllByUser(user);
 	}
 
 	@Override
@@ -38,6 +38,11 @@ public class CartService implements CartDao {
 	@Override
 	public Optional<Cart> getOpenCart(String user) {
 		return repository.findByUserAndClosed(user, false);
+	}
+	
+	@Override
+	public List<Cart> getAllCarts(String user) {
+		return repository.findAllByUser(user);
 	}
 
 	@Override

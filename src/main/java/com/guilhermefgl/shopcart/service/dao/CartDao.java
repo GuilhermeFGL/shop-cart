@@ -11,11 +11,13 @@ import com.guilhermefgl.shopcart.model.Cart;
 @Secured("USER")
 public interface CartDao {
 
-	List<Cart> findAll(User user);
+	List<Cart> findAll(String user);
 	
 	Optional<Cart> find(Long id, User user);
 	
 	Optional<Cart> getOpenCart(String user);
+	
+	List<Cart> getAllCarts(String user);
 
 	Cart save(Cart cart);
 	

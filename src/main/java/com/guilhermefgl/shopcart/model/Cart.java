@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.NotNull;
 
 @Entity(name = "cart")
 public class Cart implements Serializable {
@@ -39,6 +38,8 @@ public class Cart implements Serializable {
 	@JoinTable(name = "cart_has_product", joinColumns = { @JoinColumn(name = "id_cart") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_product") })
 	private List<Product> products;
+	
+	private Double total = 0d;
 
 	public Long getId() {
 		return id;
@@ -78,6 +79,14 @@ public class Cart implements Serializable {
 
 	public void setClosed(Boolean closed) {
 		this.closed = closed;
+	}
+
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 
 }
