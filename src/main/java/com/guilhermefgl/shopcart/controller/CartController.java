@@ -1,5 +1,6 @@
 package com.guilhermefgl.shopcart.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -35,10 +36,10 @@ public class CartController {
 	@Autowired
 	private AuthenticationFacade authentication;
 	
-	@GetMapping("/")
+	@GetMapping
 	public ModelAndView openCart() {
 		Authentication auth = authentication.getAuthentication();
-		if (auth == null || auth instanceof AnonymousAuthenticationToken) {
+		if (auth instanceof AnonymousAuthenticationToken) {
 			return new ModelAndView("redirect:/login");
 		}
 		
@@ -62,7 +63,7 @@ public class CartController {
 	@PostMapping("/add")
     public ModelAndView addToCart(@Valid ProductDto product, BindingResult result) {
 		Authentication auth = authentication.getAuthentication();
-		if (auth == null || auth instanceof AnonymousAuthenticationToken) {
+		if (auth instanceof AnonymousAuthenticationToken) {
 			return new ModelAndView("redirect:/login");
 		}
 		
@@ -86,10 +87,10 @@ public class CartController {
 		return openCart();
 	}
 	
-	@PostMapping("/")
+	@PostMapping("/close")
     public ModelAndView close() {
 		Authentication auth = authentication.getAuthentication();
-		if (auth == null || auth instanceof AnonymousAuthenticationToken) {
+		if (auth instanceof AnonymousAuthenticationToken) {
 			return new ModelAndView("redirect:/login");
 		}
 		
@@ -99,10 +100,11 @@ public class CartController {
 		} else {
 			Cart cart = new Cart();
 			cart.setClosed(true);
+			cart.setDate(LocalDateTime.now());
 			cartService.save(cart);
 		}
 		
-		return openCart();
+		return new ModelAndView("redirect:/");
 	}
 
 }
