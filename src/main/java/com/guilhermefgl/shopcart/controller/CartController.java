@@ -87,7 +87,7 @@ public class CartController {
 		return openCart();
 	}
 	
-	@PostMapping("/close")
+	@GetMapping("/close")
     public ModelAndView close() {
 		Authentication auth = authentication.getAuthentication();
 		if (auth instanceof AnonymousAuthenticationToken) {
@@ -98,7 +98,7 @@ public class CartController {
 		if (!oCart.isPresent()) {
 			return new ModelAndView("redirect:/");
 		} else {
-			Cart cart = new Cart();
+			Cart cart = oCart.get();
 			cart.setClosed(true);
 			cart.setDate(LocalDateTime.now());
 			cartService.save(cart);
