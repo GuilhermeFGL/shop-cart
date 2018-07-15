@@ -19,12 +19,12 @@
 			<strong>Home</strong>
 			<div th:if="${user != null}" style="float: right">
 				<label th:text="${user}"></label> <a class="btn btn-link"
-					href="/logout"> log out <span
+					href="/user/logout"> log out <span
 					class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
 				</a>
 			</div>
 			<div th:if="${user == null}" style="float: right">
-				<a class="btn btn-link" href="/login"> log in <span
+				<a class="btn btn-link" href="/user/login"> log in <span
 					class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
 				</a>
 			</div>

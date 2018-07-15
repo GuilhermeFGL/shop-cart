@@ -1,5 +1,8 @@
 package com.guilhermefgl.shopcart.controller;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,7 @@ import com.guilhermefgl.shopcart.model.dto.UserDto;
 import com.guilhermefgl.shopcart.service.UserService;
 
 @Controller
-@RequestMapping("/registration")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -27,14 +30,25 @@ public class UserController {
 		return new UserDto();
 	}
 
-	@GetMapping
+	@GetMapping("/login")
+	public String login(Model model) {
+		return "user/login";
+	}
+
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:login";
+	}
+
+	@GetMapping("/registration")
 	public String showRegistrationForm(Model model) {
 		return "user/registration";
 	}
 
-	@PostMapping
-	public String registerUserAccount(@ModelAttribute("user") @Valid UserDto userDto,
-			BindingResult result) {
+	@PostMapping("/registration")
+	public String registerUserAccount(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result,
+			HttpServletRequest request) {
 
 		User existing = userService.findByEmail(userDto.getEmail());
 		if (existing != null) {
@@ -46,7 +60,13 @@ public class UserController {
 		}
 
 		userService.save(userDto);
-		return "redirect:/registration?success";
+		
+		try {
+			request.login(userDto.getEmail(), userDto.getPassword());
+			return "redirect:/";
+		} catch (ServletException e) {
+			return "redirect:/user/login";
+		}	
 	}
 
 }

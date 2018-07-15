@@ -24,10 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers("/product/**", "/cart/**").access("hasRole('ROLE_USER')")
-				.antMatchers("/registration").permitAll().and()
-				.formLogin().loginPage("/login").permitAll().and()
+				.antMatchers("/user/registration").permitAll().and()
+				.formLogin().loginPage("/user/login").permitAll().and()
 				.logout().invalidateHttpSession(true).clearAuthentication(true)
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
+				.logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")).logoutSuccessUrl("/user/login?logout")
 				.permitAll();
 	}
 

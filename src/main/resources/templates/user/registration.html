@@ -17,7 +17,7 @@
 			<strong>Registration</strong>
 		</div>
 		<div class="panel-body">
-			<form class="form-horizontal" th:action="@{/registration}"
+			<form class="form-horizontal" th:action="@{/user/registration}"
 				th:object="${user}" method="post" style="margin: 15px">
 				<p class="error-message" th:if="${#fields.hasGlobalErrors()}"
 					th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
@@ -75,6 +75,9 @@
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-success">Register</button>
+				</div>
+				<div class="form-group">
+					<a th:href="@{/user/login}">Login</a>
 				</div>
 			</form>
 		</div>
