@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,11 +33,21 @@ public class HomeController {
     @Autowired
     private AuthenticationFacade authentication;
     
+    @GetMapping("login")
+    public String login(Model model) {
+        return "user/login";
+    }
+    
     @GetMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:login";
 	}
+
+    @GetMapping("user")
+    public String userIndex() {
+        return "user/index";
+    }
 	
 	@GetMapping
 	public ModelAndView list() {
