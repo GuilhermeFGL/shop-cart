@@ -35,8 +35,8 @@ public class Cart implements Serializable {
 	private LocalDateTime dateTime;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "cart_has_product", joinColumns = { @JoinColumn(name = "id_cart") }, inverseJoinColumns = {
-			@JoinColumn(name = "id_product") })
+	@JoinTable(name = "cart_has_product", joinColumns = @JoinColumn(name = "id_cart"), 
+				inverseJoinColumns = @JoinColumn(name = "id_product"))
 	private List<Product> products;
 	
 	private Double total = 0d;

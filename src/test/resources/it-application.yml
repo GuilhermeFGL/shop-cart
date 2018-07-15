@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:spring-security-hibernate-test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password: null
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    database-platform: H2

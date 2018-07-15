@@ -1,6 +1,5 @@
 package com.guilhermefgl.shopcart.model.dto;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
